@@ -17,17 +17,24 @@ module.exports = (app) => {
 
 	app.get('/books', (req, res) => {
 
-		res.send(`
-			<html>
-				<head>
-					<meta charset="UTF-8">
-					<title>Books</title>
-				</head>
-				<body>
-					<h1>Listing Books</h1>
-				</body>
-			</html>
-		`);
+		res.marko(
+
+			require('../views/books/list/list.marko'),
+			{
+				books: [
+					{
+						id: 1,
+						title: 'Node Fundamentals'
+					},
+
+					{
+						id: 2,
+						title: 'Node Advanced'
+					}
+				]
+			}
+
+		);
 
 	});
 	

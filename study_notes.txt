@@ -83,3 +83,21 @@ Study Notes
 	4.1 - Install nodemon globally
 
 		npm install -g nodemon --save-exact
+
+	4.2 - Install marko framework for page templates
+
+		npm install marko@4.13.4-1 --save-exact
+
+		4.2.1 - Enable marko in your custom express adding the lines bellow in the begin of the custom-express.js
+
+			require('marko/node-require').install();
+			require('marko/express');		
+
+		4.2.2 - Create the path structure for views, creating the book list marko file:
+
+			src/
+				app/
+					views/
+						books/
+							list/
+								list.marko

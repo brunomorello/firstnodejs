@@ -10,7 +10,8 @@
   "author": "Bruno Moreno",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "marko": "4.13.4-1"
   },
   "devDependencies": {
     "nodemon": "1.18.8"
