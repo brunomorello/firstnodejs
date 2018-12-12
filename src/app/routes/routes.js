@@ -1,3 +1,5 @@
+const db = require('../../config/database');
+
 module.exports = (app) => {
 
 	app.get('/', (req, res) => {
@@ -17,24 +19,19 @@ module.exports = (app) => {
 
 	app.get('/books', (req, res) => {
 
-		res.marko(
+		// get all records from sqlite3
+		db.all('SELECT * FROM books', (error, resp) => {
 
-			require('../views/books/list/list.marko'),
-			{
-				books: [
-					{
-						id: 1,
-						title: 'Node Fundamentals'
-					},
+			if(error) console.log(`Error to retrieve data from database: ${error}`);
 
-					{
-						id: 2,
-						title: 'Node Advanced'
-					}
-				]
-			}
+			res.marko(
+				require('../views/books/list/list.marko'),
+				{
+					books: resp
+				}
+			);
 
-		);
+		})
 
 	});
 	
