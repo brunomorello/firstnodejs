@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books Register</title>
+</head>
+<body>
+
+	<h1>Books Register</h1>
+
+	<form action="/books" method="post">
+		
+		<input type="hidden" id="id" name="id">
+
+		<div>
+			<label for="title">Title:</label>
+			<input type="text" name="title" placeholder="Insert the book title">
+		</div>
+
+		<div>
+			<label for="price">Price:</label>
+			<input type="number" name="price" min="1" step="any">
+		</div>
+
+		<div>
+			<label for="description">Description:</label>
+			<textarea cols="20" rows="10" name="description" placeholder="Insert a description for this books"></textarea>
+		</div>
+
+		<button>Save</button>
+
+	</form>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+const BookDao = require('../infra/dao/book-dao');
 const db = require('../../config/database');
 
 module.exports = (app) => {
@@ -19,20 +20,28 @@ module.exports = (app) => {
 
 	app.get('/books', (req, res) => {
 
-		// get all records from sqlite3
-		db.all('SELECT * FROM books', (error, resp) => {
+		let bookDao = new BookDao(db);
+		bookDao.list()
+				.then(booksResp => res.marko(
+					require('../views/books/list/list.marko'),
+					{
+						books: booksResp
+					}
+				))
+				.catch(error => console.log(`Error to get data from database ${error}`));
 
-			if(error) console.log(`Error to retrieve data from database: ${error}`);
+	});
 
-			res.marko(
-				require('../views/books/list/list.marko'),
-				{
-					books: resp
-				}
-			);
+	app.get('/books/form', (req, res) => {
 
-		})
+		res.marko(
+			require('../views/books/form/form.marko')
+		);
 
+	});
+
+	app.post('/books', (req, res) => {
+		console.log(req.body);
 	});
 	
 }
